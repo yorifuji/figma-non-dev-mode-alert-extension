@@ -19,7 +19,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Create zip file
-        run: zip -r figma_non_dev_alert.zip . -x "*.git*"
+        run: zip -r non_dev_alert_extension.zip . -x "*.git*"
 
       - name: Create Release
         env:
@@ -30,4 +30,4 @@ jobs:
             --target ${{ github.ref_name }} \
             --generate-notes \
             --draft \
-            figma_non_dev_alert.zip
+            non_dev_alert_extension.zip
