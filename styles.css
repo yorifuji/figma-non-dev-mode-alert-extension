@@ -1,0 +1,41 @@
+.non-dev-mode-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff4d4d;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.non-dev-mode-alert p {
+    margin: 0;
+    margin-right: 20px;
+}
+
+.non-dev-mode-alert .close-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    /* 警告テキストと同じサイズ */
+    font-family: inherit;
+    /* 親要素（.non-dev-mode-alert）からフォントを継承 */
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    text-decoration: underline;
+    /* ボタンであることを示すために下線を追加 */
+}
+
+.non-dev-mode-alert .close-button:hover {
+    opacity: 0.8;
+}

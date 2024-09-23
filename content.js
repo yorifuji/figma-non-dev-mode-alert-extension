@@ -1,57 +1,96 @@
+// content.js
 (function () {
-  function checkForDevMode() {
+  let isAlertClosed = false;
+  let alertElement = null;
+  const DEV_MODE_PARAM = "m";
+  const DEV_MODE_VALUE = "dev";
+
+  function checkDevMode() {
     const url = new URL(window.location.href);
-    const isDevMode = url.searchParams.get("m") === "dev";
+    const isDevMode = url.searchParams.get(DEV_MODE_PARAM) === DEV_MODE_VALUE;
 
-    if (isDevMode) {
-      // Instead of using alert(), we'll create a custom notification
-      const notification = document.createElement("div");
-      notification.textContent = "警告: 現在、開発モードで表示しています。";
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #ffcc00;
-        color: #000;
-        padding: 10px 20px;
-        border-radius: 5px;
-        z-index: 9999;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      `;
-      document.body.appendChild(notification);
-
-      // Remove the notification after 5 seconds
-      setTimeout(() => {
-        document.body.removeChild(notification);
-      }, 5000);
+    if (!isDevMode && !alertElement && !isAlertClosed) {
+      showAlert();
+    } else if (isDevMode) {
+      isAlertClosed = false;
+      removeAlert();
     }
   }
 
-  // Run the check when the page loads
-  checkForDevMode();
+  function showAlert() {
+    if (!alertElement && !isAlertClosed) {
+      try {
+        alertElement = document.createElement("div");
+        alertElement.className = "non-dev-mode-alert";
+        alertElement.innerHTML = `
+          <p>警告: 現在、Dev Modeではありません。</p>
+          <button class="close-button">非表示</button>
+        `;
+        document.body.appendChild(alertElement);
 
-  // Use the Navigation API to detect URL changes
-  if ("navigation" in window) {
-    navigation.addEventListener("navigate", (event) => {
-      if (
-        event.navigationType === "push" ||
-        event.navigationType === "replace"
-      ) {
-        checkForDevMode();
+        const closeButton = alertElement.querySelector(".close-button");
+        closeButton.addEventListener("click", () => {
+          removeAlert(true);
+          console.log("Alert closed by user");
+        });
+      } catch (error) {
+        console.error("警告の表示中にエラーが発生しました:", error);
       }
-    });
-  } else {
-    // Fallback for browsers that don't support the Navigation API
-    let lastUrl = location.href;
-    new MutationObserver(() => {
-      const url = location.href;
-      if (url !== lastUrl) {
-        lastUrl = url;
-        checkForDevMode();
-      }
-    }).observe(document, { subtree: true, childList: true });
+    }
   }
+
+  function removeAlert(manualClose = false) {
+    if (alertElement && alertElement.parentNode) {
+      alertElement.parentNode.removeChild(alertElement);
+      alertElement = null;
+      console.log("Alert removed");
+
+      if (manualClose) {
+        isAlertClosed = true;
+      }
+    }
+  }
+
+  const observer = new MutationObserver((mutations) => {
+    let shouldCheck = false;
+    for (const mutation of mutations) {
+      if (mutation.type === "childList" || mutation.type === "attributes") {
+        shouldCheck = true;
+        break;
+      }
+    }
+    if (shouldCheck) {
+      checkDevMode();
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["href"],
+  });
+
+  checkDevMode();
+
+  window.addEventListener("popstate", checkDevMode);
+
+  const originalPushState = history.pushState;
+  const originalReplaceState = history.replaceState;
+
+  history.pushState = function () {
+    originalPushState.apply(this, arguments);
+    checkDevMode();
+  };
+
+  history.replaceState = function () {
+    originalReplaceState.apply(this, arguments);
+    checkDevMode();
+  };
+
+  document.body.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      setTimeout(checkDevMode, 0);
+    }
+  });
 })();
