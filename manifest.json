@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Non-Dev Mode Alert",
+  "name": "Figma Non-Dev Mode Alert",
   "version": "1.0.0",
   "description": "Displays a persistent alert when not in dev mode",
   "permissions": ["activeTab"],
