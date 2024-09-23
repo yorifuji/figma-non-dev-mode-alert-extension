@@ -2,7 +2,11 @@
 
 ## 概要
 
-この Chrome 拡張機能は、Figmaで非Dev Mode（開発モード）で閲覧している際に警告を表示します。具体的にはURLに特定のパラメータ（`?m=dev`）が含まれていない場合に警告を表示します。
+この Chrome 拡張機能は、Figmaで非Dev Mode（開発モード）で閲覧している際に以下のような警告を表示するChrome Extensionです。
+
+![image](https://github.com/user-attachments/assets/7b4c8556-1c34-4239-a536-a5e676e560de)
+
+URLに特定のパラメータ（`?m=dev`）が含まれていない場合に警告を表示します。
 
 ## 機能
 
