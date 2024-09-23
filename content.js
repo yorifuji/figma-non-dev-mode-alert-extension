@@ -1,4 +1,3 @@
-// content.js
 (function () {
   let isAlertClosed = false;
   let alertElement = null;
