@@ -1,8 +1,8 @@
-# Dev Mode Alert Chrome 拡張機能
+# Figma Non-Dev Mode Alert Chrome 拡張機能
 
 ## 概要
 
-この Chrome 拡張機能は、開発モードでないページを閲覧している際に警告を表示します。URL に特定のパラメータ（`?m=dev`）が含まれていない場合、ユーザーに警告を表示します。
+この Chrome 拡張機能は、Figmaで非Dev Mode（開発モード）で閲覧している際に警告を表示します。具体的にはURLに特定のパラメータ（`?m=dev`）が含まれていない場合に警告を表示します。
 
 ## 機能
 
