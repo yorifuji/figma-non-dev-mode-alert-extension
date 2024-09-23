@@ -1,13 +1,18 @@
 {
   "manifest_version": 3,
-  "name": "Figma Non-Dev Mode Alert",
+  "name": "Dev Mode Alert",
   "version": "1.0.0",
-  "description": "Displays a persistent alert when not in dev mode",
+  "description": "開発モードでない場合に警告を表示します",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "permissions": ["activeTab"],
   "content_scripts": [
     {
       "matches": ["*://*.figma.com/*"],
-      "js": ["content.js"],
+      "js": ["main.js"],
       "css": ["styles.css"]
     }
   ],
