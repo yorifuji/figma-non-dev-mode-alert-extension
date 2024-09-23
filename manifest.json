@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Dev Mode Alert",
+  "version": "1.0",
+  "description": "Displays an alert when dev mode is detected in the URL",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.figma.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "host_permissions": ["*://*.figma.com/*"]
+}
