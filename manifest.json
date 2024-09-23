@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Dev Mode Alert",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "開発モードでない場合に警告を表示します",
   "icons": {
     "16": "icon16.png",
