@@ -15,6 +15,5 @@
       "js": ["main.js"],
       "css": ["styles.css"]
     }
-  ],
-  "host_permissions": ["*://*.figma.com/*"]
+  ]
 }
