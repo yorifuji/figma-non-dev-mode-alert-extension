@@ -58,54 +58,17 @@
     }
   }
 
-  const debounce = (func, delay) => {
-    let timeoutId;
-    return (...args) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => func(...args), delay);
-    };
-  };
+  const checkInterval = 1000;
+  let lastUrl = window.location.href;
 
-  const debouncedCheckDevMode = debounce(checkDevMode, 100);
-
-  const observer = new MutationObserver((mutations) => {
-    if (
-      mutations.some(
-        (mutation) =>
-          mutation.type === "childList" || mutation.type === "attributes"
-      )
-    ) {
-      debouncedCheckDevMode();
+  setInterval(() => {
+    const currentUrl = window.location.href;
+    if (currentUrl !== lastUrl) {
+      console.log("URL changed");
+      lastUrl = currentUrl;
+      checkDevMode();
     }
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ["href"],
-  });
+  }, checkInterval);
 
   checkDevMode();
-
-  window.addEventListener("popstate", checkDevMode);
-
-  const originalPushState = history.pushState;
-  const originalReplaceState = history.replaceState;
-
-  history.pushState = function () {
-    originalPushState.apply(this, arguments);
-    checkDevMode();
-  };
-
-  history.replaceState = function () {
-    originalReplaceState.apply(this, arguments);
-    checkDevMode();
-  };
-
-  document.body.addEventListener("click", (event) => {
-    if (event.target.closest("a")) {
-      debouncedCheckDevMode();
-    }
-  });
 })();
