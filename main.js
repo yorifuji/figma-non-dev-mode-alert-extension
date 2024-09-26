@@ -7,10 +7,11 @@
   function checkDevMode() {
     const url = new URL(window.location.href);
     const isDevMode = url.searchParams.get(DEV_MODE_PARAM) === DEV_MODE_VALUE;
+    const isDesignPath = url.pathname.startsWith("/design/");
 
-    if (!isDevMode && !isAlertClosed) {
+    if (!isDevMode && !isAlertClosed && isDesignPath) {
       showAlert();
-    } else if (isDevMode) {
+    } else if (isDevMode || !isDesignPath) {
       isAlertClosed = false;
       removeAlert();
     }

@@ -2,19 +2,13 @@
 
 ## 概要
 
-これは、Figmaを非Dev Modeで閲覧していると次のような警告を画面上部に表示するChrome拡張機能です。
+これは、Figma を非 Dev Mode で閲覧していると次のような警告を画面に表示する Chrome 拡張機能です。
 
 ![image](./images/banner.png)
 
-## 機能
-
-- URL パラメータ（`?m=dev`）に基づいて開発モードを検出
-- 非開発モード時に警告メッセージを表示
-- ユーザーが警告を閉じる機能
-
 ## インストール方法
 
-### chrome web store
+### Chrome web store
 
 [Non-Dev Mode Alert - Chrome ウェブストア](https://chromewebstore.google.com/detail/non-dev-mode-alert/edpldihlkibendkdckeikfdnibkbejaf)
 
@@ -29,3 +23,9 @@
 
 - 拡張機能をインストールすると自動的に動作します。
 - 警告メッセージが表示された場合、「非表示」ボタンをクリックして閉じることができます。
+
+## 機能
+
+- URL パラメータ（`?m=dev`）に基づいて開発モードを検出
+- 非開発モード時に警告メッセージを表示
+- ユーザーが警告を閉じる機能
