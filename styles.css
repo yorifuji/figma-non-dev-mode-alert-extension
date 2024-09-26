@@ -1,8 +1,7 @@
 .non-dev-mode-alert {
     position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 20px;
+    right: 20px;
     background-color: #ff4d4d;
     color: #fff;
     padding: 10px 20px;
