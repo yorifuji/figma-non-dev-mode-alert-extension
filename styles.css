@@ -1,40 +1,43 @@
+:root {
+    --alert-bg-color: #ff4d4d;
+    --alert-text-color: #fff;
+    --alert-font-family: Arial, sans-serif;
+    --alert-font-size: 14px;
+    --alert-spacing: 20px;
+    --alert-padding: 10px var(--alert-spacing);
+    --alert-border-radius: 4px;
+}
+
 .non-dev-mode-alert {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #ff4d4d;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
+    bottom: var(--alert-spacing);
+    right: var(--alert-spacing);
+    background-color: var(--alert-bg-color);
+    color: var(--alert-text-color);
+    padding: var(--alert-padding);
+    border-radius: var(--alert-border-radius);
     z-index: 9999;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font: var(--alert-font-size) var(--alert-font-family);
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+    overflow: hidden;
 
-.non-dev-mode-alert p {
-    margin: 0;
-    margin-right: 20px;
-}
+    p {
+        margin: 0 var(--alert-spacing) 0 0;
+    }
 
-.non-dev-mode-alert .close-button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 14px;
-    /* 警告テキストと同じサイズ */
-    font-family: inherit;
-    /* 親要素（.non-dev-mode-alert）からフォントを継承 */
-    cursor: pointer;
-    padding: 0;
-    line-height: 1;
-    text-decoration: underline;
-    /* ボタンであることを示すために下線を追加 */
-}
+    .close-button {
+        background: none;
+        border: none;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        padding: 0;
+        text-decoration: underline;
 
-.non-dev-mode-alert .close-button:hover {
-    opacity: 0.8;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
 }
