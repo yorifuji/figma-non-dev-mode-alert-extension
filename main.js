@@ -34,7 +34,7 @@
     const alert = document.createElement("div");
     alert.className = "non-dev-mode-alert";
     alert.innerHTML = `
-      <p>警告: 現在、Dev Modeではありません。</p>
+      <p>編集モードで表示しています</p>
       <button class="close-button">非表示</button>
     `;
 
