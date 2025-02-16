@@ -10,9 +10,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.figma.com/*"],
-      "js": ["main.js"],
-      "css": ["styles.css"]
+      "matches": [
+        "*://*.figma.com/*"
+      ],
+      "js": [
+        "main.js"
+      ],
+      "css": [
+        "styles.css"
+      ]
     }
   ]
 }
