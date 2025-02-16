@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Non-Dev Mode Alert",
+  "name": "Edit Mode Alert",
   "version": "1.0.5",
-  "description": "Figmaを非Dev Modeで閲覧していると画面上に警告を表示するChrome拡張機能です",
+  "description": "Figmaを編集モードで開くと警告を表示するChrome拡張機能です",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
